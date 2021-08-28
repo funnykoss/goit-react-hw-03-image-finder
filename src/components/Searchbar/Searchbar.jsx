@@ -1,5 +1,8 @@
 
 import { Component } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import s from "./Searchbar.module.css";
 
 
 export default class Searchbar extends Component{
@@ -11,7 +14,7 @@ export default class Searchbar extends Component{
         event.preventDefault();
       
         if (this.state.searchInput.trim() === ''){
-            return alert('Попробуйте еще')
+            return toast.error('введите запрос')
         }
         this.props.onSubmit(this.state.searchInput)
         this.setState({searchInput:''})
@@ -20,17 +23,17 @@ export default class Searchbar extends Component{
     handlerOnChange = event => {
       this.setState({ searchInput: event.currentTarget.value.toLowerCase() })   
     }
-    render() {
-        return (
-     <header className="Searchbar">
+  render() {
+    return (
+      <header className={s.Searchbar}>
       <form onSubmit={ this.handlerSubmit }
-      className="SearchForm">
-    <button type="submit" className="SearchForm-button">
-      <span className="SearchForm-button-label">Search</span>
+      className={s.SearchForm}>
+    <button type="submit" className={s.SearchFormButton}>
+      <span className={s.SearchFormButtonLabel}>Search</span>
     </button>
 
     <input
-      className="SearchForm-input"
+      className={s.SearchFormInput}
       type="text"
       autoComplete="off"
       autoFocus
