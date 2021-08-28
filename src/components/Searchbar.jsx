@@ -6,21 +6,24 @@ export default class Searchbar extends Component{
     state = {
        searchInput:'',
     }
-    hendlerSubmit = event => {
+    handlerSubmit = event => {
+          
         event.preventDefault();
+      
         if (this.state.searchInput.trim() === ''){
             return alert('Попробуйте еще')
         }
+        this.props.onSubmit(this.state.searchInput)
+        this.setState({searchInput:''})
     }
 
-    hendlerOnChange = event => {
-      this.state
-            ({ searchInput: event.currentTarget.value.toLowerCase() })   
+    handlerOnChange = event => {
+      this.setState({ searchInput: event.currentTarget.value.toLowerCase() })   
     }
     render() {
         return (
      <header className="Searchbar">
-      <form onSubmit={ this.hendlerSubmit }
+      <form onSubmit={ this.handlerSubmit }
       className="SearchForm">
     <button type="submit" className="SearchForm-button">
       <span className="SearchForm-button-label">Search</span>
@@ -33,7 +36,7 @@ export default class Searchbar extends Component{
       autoFocus
       placeholder="Search images and photos"
       value={this.state.searchInput}
-      onChange={this.hendlerOnChange}
+      onChange={this.handlerOnChange}
     />
   </form>
 </header>
