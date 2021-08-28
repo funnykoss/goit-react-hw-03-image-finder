@@ -1,14 +1,11 @@
 import { Component } from 'react';
 import Searchbar from './components/Searchbar';
-// import imagesAPI from './services/imageApi';
+import { ToastContainer } from 'react-toastify';
 
+import ImageGalleryInfo from './components/ImageGalleryInfo';
 class App extends Component {
   state = {
-    images: [],
-    page: 1,
     searchInput: '',
-    error: null,
-    isLoading: false,
   };
 
   handlerForSubmit = searchInput => {
@@ -18,6 +15,8 @@ class App extends Component {
     return (
       <>
         <Searchbar onSubmit={this.handlerForSubmit} />
+        <ImageGalleryInfo searchInput={this.state.searchInput} />
+        <ToastContainer />
       </>
     );
   }
